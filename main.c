@@ -1,28 +1,28 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
+#include <math.h>
 
-char nome[10];
-int eta[10];
-
-typedef struct
+typedef struct str
 {
     char nome[11];
     int eta[11];
 }struttura;
 
-void Maggiore (struct struttura);
-void Minore (struct struttura);
-void Media (struct struttura);
+struttura persona[10];
+void Maggiore(struttura persona);
+void Minore(struttura persona);
+void Media(struttura persona);
 
 int main()
 {
-int i,scelta,;
+int i,scelta;
 for(i=0;i<10;i++)
 {
  printf("inserisci il %d nome \n",i+1);
- scanf("%s",& nome[i]);
+ scanf("%s",&persona[i].nome);
  printf("inserisci la %d eta'\n",i+1);
- scanf("%d",& eta[i]);
+ scanf("%d",&persona[i].eta);
 }
  printf("inserisci 1 per la media \n 2 per il piu' giovane \n 3 per il piu' vecchio");
  scanf("&d",& scelta);
@@ -30,67 +30,71 @@ for(i=0;i<10;i++)
  {
    case 1:
    {
-       Media(struct struttura);
+       Media(persona);
+       break;
    }
+
    case 2:
    {
-       Minore(struct struttura);
+       Minore(persona);
+       break;
    }
+
    case 3:
    {
-       Maggiore(struct struttura);
+       Maggiore(persona);
    }
     default : printf("scelta errata");
-             scanf("%d",& scelta);
-    }
+    break;
+   }
 return 0;
 }
 
-void Maggiore(struct struttura)
+void Maggiore(persona)
 {
-    int maggiore;
+    int maggiore,i;
     char name;
-    maggiore=struttura.eta[0];
-    name=struttura.nome[0];
+    maggiore=persona[0].eta;
+    name=persona[0].nome;
     for(i=1;i<10;i++)
     {
-        if(maggiore<struttura.eta[i]);
+        if(maggiore<persona[i].eta);
         {
-            maggiore=eta[i];
-            name=struttura.nome;
+            maggiore=persona[i].eta;
+            name=persona[i].nome;
         }
-        printf("la persona più vecchia e' %s",& name);
-        printf("ed ha %d anni",& maggiore);
+        printf("la persona più vecchia e' %s",name);
+        printf("ed ha %d anni",maggiore);
     }
     return 0;
 }
-void Minore(struct struttura)
+void Minore(persona)
 {
-    int minore;
+    int minore,i;
     char name;
-    minore=struttura.eta[0];
-    name=struttura.nome[0];
+    minore=persona[0].eta;
+    name=persona[0].nome;
     for(i=1;i<10;i++)
     {
-        if(minore>struttura.eta[i]);
+        if(minore>persona[i].eta);
         {
-            minore=eta[i];
-            name=struttura.nome;
+            minore=persona[i].eta;
+            name=persona[i].nome;
         }
-        printf("la persona piu' giovane e' %s",& name);
-        printf("ed ha %d anni",& minore);
+        printf("la persona piu' giovane e' %s",name);
+        printf("ed ha %d anni",minore);
     }
     return 0;
 }
-void Media(struct struttura)
+void Media(persona)
 {
     int somma,i;
     float media;
     for(i=0;i<10;i++)
     {
-        somma+=struttura.eta[i];
+        somma+=persona[i].eta;
     }
     media=somma/10;
-    printf("la media e' %d",& media);
+    printf("la media e' %f",media);
 }
 
